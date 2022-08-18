@@ -9,9 +9,11 @@ async function main() {
     // MOngoClient -> MongoDatabase -> MOngoCollection
     // It can spend time
     // Use Promises
+    /*
     const client = await MongoClient.connect(url);
     const db = client.db(dbName);
     const collection = db.collection('scores');
+    */
 
     const app = express();
 
