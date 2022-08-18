@@ -1,19 +1,20 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
 
-const url = 'mongodb://mongoAdmin:123456@localhost:27017';
-const dbName = 'ocean_fullstack_scores';
+//const url = 'mongodb://mongoAdmin:123456@localhost:27017';
+//const dbName = 'ocean_fullstack_scores';
+const url = "mongodb+srv://adminScoreGame:wxTsaWL46Rtbodio@fs-game-scores.yxbabzz.mongodb.net/";
+const dbName = 'fs-game-scores';
 
 async function main() {
     // Make the MongoClient connection
     // MOngoClient -> MongoDatabase -> MOngoCollection
     // It can spend time
     // Use Promises
-    /*
+    
     const client = await MongoClient.connect(url);
     const db = client.db(dbName);
     const collection = db.collection('scores');
-    */
 
     const app = express();
 
