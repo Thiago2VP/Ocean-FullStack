@@ -43,7 +43,7 @@ async function main() {
         res.send('Item successfully created');
     });
 
-    app.listen(3000);
+    app.listen(process.env.PORT || 3000);
 }
 
 //Execute main
