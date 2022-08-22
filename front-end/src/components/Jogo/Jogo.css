@@ -1,0 +1,37 @@
+.Jogo {
+    height: 100vh;
+}
+
+.acima-do-chao {
+    background: #9BE5E4;
+    height: 90vh;
+}
+
+.nuvens {
+    width: 200px;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+}
+
+.mario {
+    position: absolute;
+    bottom: 10vh;
+    width: 150px;
+}
+
+.morte {
+    display: none;
+}
+
+.cano {
+    position: absolute;
+    bottom: 10vh;
+    width: 98px;
+    right: 20%;
+}
+
+.chao {
+    background: #7cfc00;
+    height: 10vh;
+}
