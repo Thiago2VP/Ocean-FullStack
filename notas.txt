@@ -24,4 +24,10 @@ https://2021.stateofjs.com/en-US/
 
 **********************************
 
+***********************************
+******** Comandos React ***********
+
+npx create-react-app my-app (Na raíz do projeto, já que o my-app é o frontend)
+cd my-app
+npm start
 

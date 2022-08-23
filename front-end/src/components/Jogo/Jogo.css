@@ -1,23 +1,39 @@
 .Jogo {
     height: 100vh;
-}
-
-.acima-do-chao {
     background: #9BE5E4;
-    height: 90vh;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
 }
 
 .nuvens {
     width: 200px;
     position: absolute;
     top: 30px;
-    left: 50%;
+    animation: mover-direita-para-esquerda infinite 8s linear;
 }
 
 .mario {
     position: absolute;
-    bottom: 10vh;
-    width: 150px;
+    bottom: 30px;
+    height: 100px;
+    left: 50px;
+}
+
+.mario-pulo {
+    animation: mario-pulo 1s;
+}
+
+@keyframes mario-pulo {
+    from {
+        bottom: 30px;
+    }
+    50% {
+        bottom: 150px;
+    }
+    to {
+        bottom: 30px;
+    }
 }
 
 .morte {
@@ -26,12 +42,25 @@
 
 .cano {
     position: absolute;
-    bottom: 10vh;
-    width: 98px;
-    right: 20%;
+    bottom: 30px;
+    width: 50px;
+    right: 50px;
+    animation: mover-direita-para-esquerda infinite 2s linear;
 }
 
 .chao {
-    background: #7cfc00;
-    height: 10vh;
+    background: limegreen;
+    height: 30px;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
+
+@keyframes mover-direita-para-esquerda {
+    from {
+        right: -300px;
+    }
+    to {
+        right: 110%;
+    }
 }
