@@ -1,13 +1,15 @@
 import './Jogo.css';
 import nuvens from "../../assets/clouds.png";
 import marioLive from "../../assets/mario.gif";
-import marioDead from "../../assets/game-over.png";
+import gameOver from "../../assets/game-over.png";
 import pipe from "../../assets/pipe.png";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-function Jogo() {
+function Jogo(props) {
 
   const [estaPulando, setEstaPulando] = useState(false);
+  const [estaMorto, setEstaMorto] = useState(false);
+  const [pontos, setPontos] = useState(false);
 
   const marioRef = useRef();
   const canoRef = useRef();
@@ -27,12 +29,44 @@ function Jogo() {
 
   }
 
-  //exibicao etmporaria se mario morreu ou nao
-  setInterval(function () {
-    const valor = marioEstaNoCano();
+  useEffect( function () {
+    //Efeito, pode ser com return
 
-    console.log("Mario esta no cano?", valor);
-  }, 100);
+    //exibicao etmporaria se mario morreu ou nao
+    const interval = setInterval(function () {
+      const estaNoCano = marioEstaNoCano();
+
+      //Se o mario nao estiver no cano
+      if(!estaNoCano || estaMorto) {
+        return;
+      }
+
+      //esta no cano
+      setEstaMorto(true);
+      props.onMorrer();
+
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, 
+  [estaMorto]
+  );
+
+  // Salvar pontuacao
+  useEffect(function () {
+    const interval = setInterval(function () {
+
+      if(estaMorto) {
+        return;
+      }
+  
+      setPontos(pontos +1);
+  
+    }, 500);
+
+    return () => clearInterval(interval);
+
+  }, [estaMorto, pontos]);
 
   document.onkeydown = function () {
     setEstaPulando(true);
@@ -48,13 +82,20 @@ function Jogo() {
     marioClassName = "mario mario-pulo";
   }
 
+  //Mudar imagem do mario se necessario
+  const marioImage = estaMorto ? gameOver : marioLive;
+
+  //Parar animacao
+  const pararAnimacao = estaMorto ? "parar-animacao" : "";
+
   return (
     <div className="Jogo">
-        <img className="nuvens" alt="Nuvens" src={nuvens} />
-        <img ref={marioRef} className={marioClassName} alt="Mario Bros Correndo" src={marioLive} />
-        <img className="morte" alt="mario Bros Derrotado" src={marioDead} />
-        <img ref={canoRef} className="cano" alt="Cano verde do Mario" src={pipe} />
-        <div className="chao" title="Chão"></div>
+      <div className="pontos">Pontos: {pontos}</div>
+
+      <img className={"nuvens " + pararAnimacao} alt="Nuvens" src={nuvens} />
+      <img ref={marioRef} className={marioClassName} alt="Mario Bros Correndo" src={marioImage} />
+      <img ref={canoRef} className={"cano " + pararAnimacao} alt="Cano verde do Mario" src={pipe} />
+      <div className="chao" title="Chão"></div>
     </div>
   );
 }
