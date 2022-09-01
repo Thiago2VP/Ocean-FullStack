@@ -12,7 +12,7 @@ function HightScore(props) {
         //Function to Request
         async function loadScores() {
             //Request from scores backend
-            const response = await fetch("http://localhost:3333/scores");
+            const response = await fetch("https://ocean-fullstack-1sy.herokuapp.com/scores");
             //take the body content in json
             const body = await response.json();
     
@@ -33,7 +33,7 @@ function HightScore(props) {
 
         console.log(name);
 
-        const response = await fetch("http://localhost:3333/scores", {
+        const response = await fetch("https://ocean-fullstack-1sy.herokuapp.com/scores", {
             method: "POST",
             body: JSON.stringify({ name: name, points: props.pontos }),
             headers: {
