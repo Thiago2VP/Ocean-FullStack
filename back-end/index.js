@@ -1,5 +1,6 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
+const cors = require('cors');
 
 //const url = 'mongodb://mongoAdmin:123456@localhost:27017';
 //const dbName = 'ocean_fullstack_scores';
@@ -17,6 +18,9 @@ async function main() {
     const collection = db.collection('scores');
 
     const app = express();
+
+    //Activate cors configurations
+    app.use(cors());
 
     // Advertise the use like JSON
     app.use(express.json());
@@ -46,7 +50,7 @@ async function main() {
         res.send('Item successfully created');
     });
 
-    app.listen(process.env.PORT || 3000);
+    app.listen(process.env.PORT || 3333);
 }
 
 //Execute main

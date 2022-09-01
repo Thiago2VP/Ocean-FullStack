@@ -49,7 +49,7 @@ function Jogo(props) {
 
     return () => clearInterval(interval);
   }, 
-  [estaMorto]
+  [estaMorto, props]
   );
 
   // Salvar pontuacao
@@ -61,12 +61,13 @@ function Jogo(props) {
       }
   
       setPontos(pontos +1);
+      props.onPontos(pontos +1);
   
     }, 500);
 
     return () => clearInterval(interval);
 
-  }, [estaMorto, pontos]);
+  }, [estaMorto, pontos, props]);
 
   document.onkeydown = function () {
     setEstaPulando(true);
